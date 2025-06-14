@@ -3,7 +3,7 @@
 
 # Main quest:
 1. Describe how FPGAs are buildable using transistors.
-2. Describe how ICs are just a collection of transistors in a nice reliable package.
+2. Describe how ICs are just a collection of transistors in a nice reliable package. (clear)
 3. Understand LUTs and stuff(?).
 4. Describe the theory of transistors.(CLEAR)
 
@@ -33,3 +33,10 @@ transist is the process of being moced or carried from one place to another.
   - There are  different ypes of divces:
     - Diode, Transistor,  Field-effect transistor, and MOSFET.
   - Transistor as switch for logic gates, they can be in two states, thus we can model information logic, AND, OR , etc. with them. How? We have the current switched, the voltage ahndled and the switching speed. Having an open circut is the state OFF, the short circut is state ON. And an instantatneos transition between the two states.
+  - Source: https://en.wikipedia.org/wiki/Integrated_circuit
+  - IC, stands for integraded circuit and is an electric circuit made out of transistors, resistors and capacitors.
+  - The components are etched onto a small surface made from a semiconductor material.
+    - size, cost, and performance.
+  - All the components are printed onto the chip in on part, rather than one by one.
+  - Result is less material and a lower power consume, due to proximity and small size.
+  - Downside is the high intial cost.
