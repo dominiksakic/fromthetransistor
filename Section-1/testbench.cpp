@@ -1,26 +1,38 @@
-#include "Vadder.h"
+#include  "Vled_blink.h"
 #include "verilated.h"
-#include <iostream>
+#include "verilated_vcd_c.h"
+#include <cstdio>
 
 int main(int argc, char **argv) {
     Verilated::commandArgs(argc, argv);
-    Vadder* top = new Vadder;
+    Verilated::traceEverOn(true);
+
+    Vled_blink* top = new Vled_blink;
+
+    VerilatedVcdC* tfp = new VerilatedVcdC;
+    top->trace(tfp, 99);
+    tfp->open("dump.vcd");
 
     // Set inputs
-    top->a = 3;
-    top->b = 4;
+    top->clk = 0;
 
-    top->eval();  // Evaluate the model
+    for (int i = 0; i < 100; i++){
+        // simulates a clock toggle each tick
+        top->clk = !top->clk;
 
-    std::cout << "a=3, b=4, sum=" << (int)top->sum << std::endl;
+        // Verilator sumulation kernel evaluate the hardware model for the current state.
+        top->eval();
 
-    top->a = 7;
-    top->b = 9;
+        // i counts half circles from 0->1, half a cirlce.
+        if (top->clk){
+            tfp->dump(i);
+            printf("Cycle %d: LED = %d\n", i/2, top->led);
+        }
+    }
 
-    top->eval();
-
-    std::cout << "a=7, b=9, sum=" << (int)top->sum << std::endl;
-
+    tfp->close();
     delete top;
+    delete tfp;
+
     return 0;
 }
